@@ -13,7 +13,7 @@ ARG URL_ARM=https://github.com/zhuoqiw/ros-pylon/releases/download/v6.2.0/pylon_
 ARG TAR_ARM=pylon_6.2.0.21487_aarch64.tar.gz
 
 # Copy cmake package files
-COPY pylon.pc /opt/pylon/lib/pkgconfig/
+COPY pylon-config*.cmake /opt/pylon/
 
 # Install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -30,5 +30,4 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
   && tar -xzf pylon.tar.gz \
   && tar -C /opt/pylon -xzf ${TAR_ARM}; \
   else exit 1; fi \
-  && cp /opt/pylon/lib/pkgconfig/pylon.pc /usr/lib/pkgconfig/ \
   && rm pylon* INSTALL
