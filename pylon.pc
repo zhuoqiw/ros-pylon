@@ -1,0 +1,6 @@
+Name: pylon
+Description: pylon package configuration
+Version: 6.2.0
+URL: https://www.baslerweb.com
+Libs: -L/opt/pylon/lib -lpylonbase -lpylonutility -lGenApi_gcc_v3_1_Basler_pylon -lGCBase_gcc_v3_1_Basler_pylon
+Cflags: -I/opt/pylon/include
