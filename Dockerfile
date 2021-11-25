@@ -31,3 +31,7 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
   && tar -C /opt/pylon -xzf ${TAR_ARM}; \
   else exit 1; fi \
   && rm pylon* INSTALL
+
+# Update ldconfig
+RUN echo "/opt/pylon/lib" >> /etc/ld.so.conf.d/pylon.conf; \
+  && ldconfig
