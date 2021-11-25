@@ -33,5 +33,5 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
   && rm pylon* INSTALL
 
 # Update ldconfig
-RUN echo "/opt/pylon/lib" >> /etc/ld.so.conf.d/pylon.conf; \
+RUN echo "/opt/pylon/lib" >> /etc/ld.so.conf.d/pylon.conf \
   && ldconfig
