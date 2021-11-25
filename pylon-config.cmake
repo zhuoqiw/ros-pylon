@@ -27,6 +27,9 @@ if(NOT TARGET pylon::pylon_gc)
   )
 endif()
 
-add_library(pylon::pylon INTERFACE IMPORTED)
-set_property(TARGET pylon::pylon PROPERTY
-  INTERFACE_LINK_LIBRARIES pylon::pylon_base pylon::pylon_utility pylon::pylon_gen pylon::pylon_gc)
+if(NOT TARGET pylon::pylon)
+  add_library(pylon::pylon INTERFACE IMPORTED)
+  set_property(TARGET pylon::pylon PROPERTY
+    INTERFACE_LINK_LIBRARIES pylon::pylon_base pylon::pylon_utility pylon::pylon_gen pylon::pylon_gc
+  )
+endif()
