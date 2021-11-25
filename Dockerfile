@@ -32,3 +32,5 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
   else exit 1; fi \
   && cp /opt/pylon/lib/pkgconfig/pylon.pc /usr/lib/pkgconfig/ \
   && rm pylon* INSTALL
+
+RUN echo 1000 > /sys/module/usbcore/parameters/usbfs_memory_mb
