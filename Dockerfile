@@ -32,6 +32,3 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
   else exit 1; fi \
   && cp /opt/pylon/lib/pkgconfig/pylon.pc /usr/lib/pkgconfig/ \
   && rm pylon* INSTALL
-
-# Increase the usbfs limit
-RUN sed -i '3iecho 1000 > /sys/module/usbcore/parameters/usbfs_memory_mb' ros_entrypoint.sh
