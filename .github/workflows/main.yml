@@ -1,4 +1,4 @@
-name: ci
+name: Build ros-pylon
 
 # Controls when the workflow will run
 on: workflow_dispatch
@@ -31,3 +31,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: zhuoqiw/ros-pylon:6.2.0
+          cache-from: type=registry,ref=zhuoqiw/ros-pylon:6.2.0
+          cache-to: type=inline
