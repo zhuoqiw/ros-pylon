@@ -30,6 +30,6 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: zhuoqiw/ros-pylon:6.2.0
-          cache-from: type=registry,ref=zhuoqiw/ros-pylon:6.2.0
+          tags: zhuoqiw/ros-pylon:6.2.0,zhuoqiw/ros-pylon:latest
+          cache-from: type=registry,ref=zhuoqiw/ros-pylon
           cache-to: type=inline
