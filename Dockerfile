@@ -40,4 +40,4 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
 RUN echo "/opt/pylon/lib" >> /setup_client/etc/ld.so.conf.d/pylon.conf
 
 # Copy env setup script to host
-RUN cp -r /setup_client/opt/pylon/share/pylon/* /setup_host/opt/pylon/share/pylon
+RUN cp -r /setup_client/opt/pylon/share/pylon/* /setup_host/opt/pylon/share/pylon/
