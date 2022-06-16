@@ -13,7 +13,7 @@ ARG URL_ARM=https://github.com/zhuoqiw/ros-pylon/releases/download/v6.2.0/pylon_
 ARG TAR_ARM=pylon_6.2.0.21487_aarch64.tar.gz
 
 # Prepare install directories: package and ldconfig on client, env setup script on host
-RUN mkdir -p /setup_client/opt/pylon /setup_client/etc/ld.so.conf.d /setup_host/opt/pylon/share/pylon
+RUN mkdir -p /setup_client/opt/pylon /setup_client/etc/ld.so.conf.d /setup_host/opt/pylon/share
 
 # Copy cmake package files
 COPY pylon-config*.cmake /setup_client/opt/pylon/
@@ -40,4 +40,4 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
 RUN echo "/opt/pylon/lib" >> /setup_client/etc/ld.so.conf.d/pylon.conf
 
 # Copy env setup script to host
-RUN cp -r /setup_client/opt/pylon/share/pylon/* /setup_host/opt/pylon/share/pylon/
+RUN cp -r /setup_client/opt/pylon/share/pylon /setup_host/opt/pylon/share/
