@@ -1,5 +1,7 @@
-# Install pylon on ROS
-FROM ubuntu:latest
+ARG UBUNTU_VERSION
+
+# Extract pylon
+FROM ubuntu:${UBUNTU_VERSION}
 
 # linux/amd64 or linux/arm64
 ARG TARGETPLATFORM

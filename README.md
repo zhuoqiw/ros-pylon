@@ -1,6 +1,6 @@
 # ros-pylon
 
-In order to use containerized pylon, this specific image is to be utilized as two roles: for host and client.
+In order to use containerized pylon, this specific image is to be utilized as two roles: for host and container.
 
 ## For host
 
@@ -22,15 +22,17 @@ sudo rm -r /opt/pylon # in case to save a little bit tiny disk usage
 sudo udevadm control --reload-rules # or reboot
 ```
 
-## For client (multistage built image typically)
+## For container (multistage built image typically)
 
-Two pieces of information should be setup properly on client:
+Two pieces of information should be setup properly on container:
 
-1. Copy the runtime package from /setup_client/opt/pylon to client's /opt/pylon
-1. Copy ldconfig from /setup_client/etc/ld.so.conf.d/pylon.conf to client's /etc/ld.so.conf.d/pylon.conf and run ldconfig
+1. Copy the runtime package from /setup_client/opt/pylon to container's /opt/pylon
+1. Copy ldconfig from /setup_client/etc/ld.so.conf.d/pylon.conf to container's /etc/ld.so.conf.d/pylon.conf and run ldconfig
 
 ```Dockerfile
 FROM zhuoqiw/ros-pylon AS pylon
+
+FROM something-else
 
 COPY --from=pylon /setup_client/opt/pylon /opt/pylon
 COPY --from=pylon /setup_client/etc/ld.so.conf.d/pylon.conf /etc/ld.so.conf.d/pylon.conf
