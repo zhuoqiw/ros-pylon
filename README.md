@@ -29,9 +29,10 @@ sudo udevadm control --reload-rules
 
 ## For container (multistage built image typically)
 
-Two pieces of information should be setup properly on container:
+Three pieces of information should be setup properly on container:
 
 1. Copy the runtime package from /setup/opt/pylon to container's /opt/pylon
+1. Setup PYLON_ROOT to enable easy examples
 1. Copy ldconfig from /setup/etc/ld.so.conf.d/pylon.conf to container's /etc/ld.so.conf.d/pylon.conf and run ldconfig
 
 ```Dockerfile
@@ -40,5 +41,6 @@ FROM zhuoqiw/ros-pylon AS pylon
 FROM something-else
 
 COPY --from=pylon /setup /
+ENV PYLON_ROOT=/opt/pylon
 RUN ldconfig
 ```
