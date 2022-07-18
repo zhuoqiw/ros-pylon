@@ -23,7 +23,6 @@ on:
         - 'linux/arm64'
         - 'linux/amd64,linux/arm64'
 
-
 # For more details, see https://docs.github.com/en/actions/using-workflows/reusing-workflows
 jobs:
   reusable_workflow_job:

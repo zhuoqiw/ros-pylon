@@ -14,10 +14,17 @@ To fully use pylon, four pieces of infomation should be setup properly on host:
 These may be accomplished via a mount point '/setup', follow these steps:
 
 ```bash
+# run this image once so the setup volume (via mount point) persists
 docker run --rm -v ros-pylon-setup:/setup zhuoqiw/ros-pylon
-sudo /var/lib/docker/volumes/ros-pylon-setup/_data/opt/pylon/share/pylon/setup-usb.sh # follow interactive instruction
-docker volume rm ros-pylon-setup # in case to save a little bit tiny disk usage
-sudo udevadm control --reload-rules # or reboot
+
+# follow interactive instruction
+sudo /var/lib/docker/volumes/ros-pylon-setup/_data/opt/pylon/share/pylon/setup-usb.sh
+
+# in case to save a little bit tiny disk usage
+docker volume rm ros-pylon-setup
+
+# or reboot
+sudo udevadm control --reload-rules
 ```
 
 ## For container (multistage built image typically)
