@@ -14,7 +14,7 @@ ARG TAR_AMD=pylon_6.2.0.21487_x86_64.tar.gz
 ARG URL_ARM=https://github.com/zhuoqiw/ros-pylon/releases/download/v6.2.0/pylon_6.2.0.21487_aarch64_setup.tar.gz
 ARG TAR_ARM=pylon_6.2.0.21487_aarch64.tar.gz
 
-# Prepare install directories: package and ldconfig
+# Prepare install directories
 RUN mkdir -p /setup/opt/pylon /setup/etc/ld.so.conf.d
 
 # Copy cmake package files
