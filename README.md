@@ -15,9 +15,8 @@ These may be accomplished via a mount point '/setup', follow these steps:
 
 ```bash
 docker run --rm -v ros-pylon-setup:/setup zhuoqiw/ros-pylon
-sudo docker cp pylon:/setup_host/opt /
-/var/lib/docker/volumes/ros-pylon-setup/_data/opt/pylon/share/pylon/setup-usb.sh # follow interactive instruction
-sudo rm -r /opt/pylon # in case to save a little bit tiny disk usage
+sudo /var/lib/docker/volumes/ros-pylon-setup/_data/opt/pylon/share/pylon/setup-usb.sh # follow interactive instruction
+docker volume rm ros-pylon-setup # in case to save a little bit tiny disk usage
 sudo udevadm control --reload-rules # or reboot
 ```
 
