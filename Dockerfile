@@ -38,7 +38,7 @@ RUN echo "/opt/pylon/lib" >> /setup/etc/ld.so.conf.d/pylon.conf
 FROM busybox:latest
 
 # Copy
-COPY --from=base /setup/* /setup
+COPY --from=base /setup /
 
 # Mount point for image users to install udev rules, etc.
 VOLUME [ "/setup" ]
