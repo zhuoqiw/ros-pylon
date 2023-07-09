@@ -1,24 +1,17 @@
-ARG UBUNTU_VERSION
-
 # Extract pylon
-FROM ubuntu:${UBUNTU_VERSION}
+FROM ubuntu:latest AS base
 
 # linux/amd64 or linux/arm64
 ARG TARGETPLATFORM
 
 # For amd64
-ARG URL_AMD=https://github.com/zhuoqiw/ros-pylon/releases/download/v6.2.0/pylon_6.2.0.21487_x86_64_setup.tar.gz
-ARG TAR_AMD=pylon_6.2.0.21487_x86_64.tar.gz
+ARG URL_AMD=https://www.baslerweb.com/fp-1682511097/media/downloads/software/pylon_software/pylon_7.3.0.27189_linux-x86_64_setup.tar.gz
 
 # For arm64
-ARG URL_ARM=https://github.com/zhuoqiw/ros-pylon/releases/download/v6.2.0/pylon_6.2.0.21487_aarch64_setup.tar.gz
-ARG TAR_ARM=pylon_6.2.0.21487_aarch64.tar.gz
+ARG URL_ARM=https://www.baslerweb.com/fp-1682511094/media/downloads/software/pylon_software/pylon_7.3.0.27189_linux-aarch64_setup.tar.gz
 
 # Prepare install directories
 RUN mkdir -p /setup/opt/pylon /setup/etc/ld.so.conf.d
-
-# Copy cmake package files
-COPY pylon-config*.cmake /setup/opt/pylon/
 
 # Install dependencies
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
@@ -28,18 +21,24 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 
 # Extract package to client
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-    wget -O pylon.tar.gz ${URL_AMD} --no-check-certificate \
-    && tar -xzf pylon.tar.gz \
-    && tar -C /setup/opt/pylon -xzf ${TAR_AMD}; \
+    wget -O temp.tar.gz ${URL_AMD} --no-check-certificate \
+    && tar -xzf temp.tar.gz \
+    && tar -C /setup/opt/pylon -xzf pylon_*.tar.gz; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-    wget -O pylon.tar.gz ${URL_ARM} --no-check-certificate \
-    && tar -xzf pylon.tar.gz \
-    && tar -C /setup/opt/pylon -xzf ${TAR_ARM}; \
+    wget -O temp.tar.gz ${URL_ARM} --no-check-certificate \
+    && tar -xzf temp.tar.gz \
+    && tar -C /setup/opt/pylon -xzf pylon_*.tar.gz; \
     else exit 1; fi \
-    && rm pylon*
+    && chmod 755 /setup/opt/pylon
 
 # Update ldconfig to client
 RUN echo "/opt/pylon/lib" >> /setup/etc/ld.so.conf.d/pylon.conf
+
+# Use busybox as container
+FROM busybox:latest
+
+# Copy
+COPY --from=base /setup/* /setup
 
 # Mount point for image users to install udev rules, etc.
 VOLUME [ "/setup" ]
