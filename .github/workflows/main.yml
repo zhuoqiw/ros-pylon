@@ -4,7 +4,7 @@ name: Build and push docker image
 # Controls when the workflow will run
 on: [workflow_dispatch]
 
-# For more details, see https://docs.github.com/en/actions/using-workflows/reusing-workflows
+# For more details, see https://docs.docker.com/build/ci/github-actions/push-multi-registries/
 jobs:
   docker:
     runs-on: ubuntu-latest
