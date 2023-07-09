@@ -23,11 +23,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
     wget -O temp.tar.gz ${URL_AMD} --no-check-certificate \
     && tar -xzf temp.tar.gz \
-    && tar -C /setup/opt/pylon -xzf pylon_*.tar.gz; \
+    && tar -C /setup/opt/pylon -xzf pylon*.tar.gz; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
     wget -O temp.tar.gz ${URL_ARM} --no-check-certificate \
     && tar -xzf temp.tar.gz \
-    && tar -C /setup/opt/pylon -xzf pylon_*.tar.gz; \
+    && tar -C /setup/opt/pylon -xzf pylon*.tar.gz; \
     else exit 1; fi \
     && chmod 755 /setup/opt/pylon
 
