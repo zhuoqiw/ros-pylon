@@ -18,7 +18,7 @@ These may be accomplished via a mount point '/setup', follow these steps:
 docker run --rm -v ros-pylon-setup:/setup zhuoqiw/ros-pylon
 
 # follow interactive instruction
-sudo /var/lib/docker/volumes/ros-pylon-setup/_data/opt/pylon/share/pylon/setup-usb.sh
+sudo sh /var/lib/docker/volumes/ros-pylon-setup/_data/opt/pylon/share/pylon/setup-usb.sh
 
 # in case to save a little bit tiny disk usage
 docker volume rm ros-pylon-setup
